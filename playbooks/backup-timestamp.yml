@@ -9,13 +9,13 @@
 
   - name: timestamp
     local_action: command date +'%Y-%m-%d %H:%M:%S'
-    register: timestamp
+    register: date_time
      
   - name: configurable backup path
     cisco.ios.ios_config:
       backup: yes
       backup_options:
-        filename: "{{ inventory_hostname }}_{{ timestamp.stdout }}.cfg"
+        filename: "{{ inventory_hostname }}_{{ date_time.stdout }}.cfg"
         dir_path: /home/jan/show-output
 
 ...

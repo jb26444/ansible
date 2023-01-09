@@ -2,15 +2,15 @@
 
 - name: Cisco show version example
   hosts: routers
-  gather_facts: yes
- 
+  gather_facts: no
 
+ 
   tasks:
- 
+
   - name: timestamp
-    local_action: comand date +
- 
-      
+    local_action: command date +%Y%m%d
+    register: timestamp
+     
   - name: configurable backup path
     cisco.ios.ios_config:
       backup: yes

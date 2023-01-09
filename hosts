@@ -1,0 +1,11 @@
+[routers]
+router-7 ansible_host=192.18.18.107
+router-5 ansible_host=192.18.18.105
+router-6 ansible_host=192.18.18.106
+
+
+[routers:vars]
+ansible_network_os=ios
+ansible_user=admin
+ansible_password=cisco
+ansible_connection=network_cli

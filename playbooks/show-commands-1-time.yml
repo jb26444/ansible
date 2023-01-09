@@ -1,0 +1,27 @@
+---
+  - name: capture show output
+    hosts: routers
+    gather_facts: yes
+    connection: network_cli
+
+    tasks: 
+
+      - name: show run
+        ios_command:
+          commands:
+          - show ip route
+          - show run
+          - show version
+        register: config
+        
+      - name: Display current Time
+        run_once: yes
+        set_fact:
+          currenttime: "{{ ansible_date_time.date }}"
+        tags: linux  
+
+      - name: save output to local directory
+        copy:
+          content: "{{ config.stdout | replace('\\n', '\n') }}"
+          dest: "/home/jan/show-output/{{ inventory_hostname }}{{ currenttime }}.ios"
+...

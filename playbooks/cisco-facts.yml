@@ -1,0 +1,17 @@
+---
+
+- name: Cisco Gather facts
+  hosts: routers
+  gather_facts: false
+
+  tasks:
+    - name: Gather all legacy facts
+      cisco.ios.ios_facts:
+        gather_subset: all
+      register: output
+
+    - name: Copy output to file
+      copy:
+        content: "{{ output.stdout | replace('\\n', '\n') }}" #
+        #Change destination/direcotry 
+        dest: "/home/jan/desktop/{{ inventory_hostname }}.txt"

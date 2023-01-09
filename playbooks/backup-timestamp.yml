@@ -2,24 +2,14 @@
 
 - name: Cisco show version example
   hosts: routers
-  gather_facts: no
+  gather_facts: yes
  
 
   tasks:
-  
-  - name: gather facts from apps
-    setup:
-      gather_subset:
-         - hardware
-      when: ansible_connection == 'local'   
-      tags: linux
-      
-  - name: "Display Ansible date_time fact and register"
-    delegate_to: localhost
-    run_once: yes
-    set_fact: 
-      currenttime: "{{ ansible_date_time.date }}"
-    tags: linux  
+ 
+  - name: timestamp
+    local_action: comand date +
+ 
       
   - name: configurable backup path
     cisco.ios.ios_config:

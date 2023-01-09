@@ -2,11 +2,10 @@
 
 - name: Cisco show version example
   hosts: routers
-  gather_facts: true
+  gather_facts: no
  
 
   tasks:
-  
   
   - name: gather facts from apps
     setup:

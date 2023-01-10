@@ -1,0 +1,21 @@
+---
+
+- name: Cisco show version example
+  hosts: all
+  gather_facts: no
+
+ 
+  tasks:
+
+  - name: timestamp
+    local_action: command date +'%Y-%m-%d %H:%M:%S'
+    register: date_time
+     
+  - name: configurable backup path
+    cisco.ios.ios_config:
+      backup: yes
+      backup_options:
+        filename: "{{ inventory_hostname }}_{{ date_time.stdout }}.cfg"
+        dir_path: /home/jan/show-output
+
+...

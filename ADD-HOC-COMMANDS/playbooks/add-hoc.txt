@@ -1,0 +1,1 @@
+ansible all -m raw -a "show run" -u admin -k

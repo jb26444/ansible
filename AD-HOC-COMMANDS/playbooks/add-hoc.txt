@@ -1,0 +1,6 @@
+ansible all -m raw -a "show run" -u admin -k
+ansible switch-1-m raw -a "show run" -u admin -k
+
+1) set up overview
+2) run a raw command against single device
+3) run a raw command against multiple devices

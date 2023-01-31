@@ -1,6 +1,7 @@
 ---
 switches:
-  - {hostname: switch1, vlan1: 1}
+  - {hostname: switch1, vlan1: 1, vlan2: 10, domain: cisco.com}
 
-  - {hostname: switch2, vlan1: 1}
+  - {hostname: switch2, vlan1: 1, vlan2: 20, domain: cisco.com}
+  
 ...

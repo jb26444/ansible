@@ -1,9 +1,0 @@
----
-- name: Generate configuration files
-  hosts: localhost
-
-  
-  template: src=router.j2 dest=./{{ item.hostname }}.txt
-  with_items: 
-  - { hostname: twb-sf-rtr1 }
-  - { hostname: twb-sf-rtr2 }

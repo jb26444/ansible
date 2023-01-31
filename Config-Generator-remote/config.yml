@@ -3,7 +3,8 @@
 - name: configure network devices
   hosts: routers
   gather_facts: false
+  vars_files: ./group_vars/all.yml
   tasks:
     - name: configure device with config
       cli_config:
-        config: "{{ lookup('template', 'template.j2') }}"
+        config: "{{ lookup('template', 'router.j2') }}"

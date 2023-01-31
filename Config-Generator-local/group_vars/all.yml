@@ -1,0 +1,6 @@
+---
+switches:
+  - {hostname: switch1, vlan1: 10, vlan2: 20}
+
+  - {hostname: switch2, vlan1: 10, vlan2: 20}
+...

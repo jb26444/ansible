@@ -1,6 +1,0 @@
----
-switches:
-  - {hostname: switch1,}
-
-  - {hostname: switch2,}
-...

@@ -1,0 +1,5 @@
+!
+hostname switch1
+!
+vlan 1
+!

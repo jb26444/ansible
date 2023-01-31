@@ -1,11 +1,9 @@
 ---
 
-- name: Generate configuration files
-  hosts: localhost
-  gather_facts: no
-
+- name: configure network devices
+  hosts: routers
+  gather_facts: false
   tasks:
-
-  - name: Config from template
-    template: src=router.j2 dest=./{{ item.hostname }}.txt
-    with_items: "{{switches}}"
+    - name: configure device with config
+      cli_config:
+        config: "{{ lookup('template', 'template.j2') }}"

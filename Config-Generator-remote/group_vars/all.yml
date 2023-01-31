@@ -1,6 +1,7 @@
 ---
-switches:
-  - {hostname: switch1, vlan1: 1}
-
-  - {hostname: switch2, vlan1: 1}
+nodes:
+  router-5:
+     - {domain: jb.com}
+  router-6:
+     - {domain: hp.com}
 ...

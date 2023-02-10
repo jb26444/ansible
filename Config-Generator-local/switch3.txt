@@ -1,0 +1,10 @@
+!
+hostname switch3
+!
+vlan 3
+!
+vlan 30
+!
+ip domain-name cisco.com
+!
+!

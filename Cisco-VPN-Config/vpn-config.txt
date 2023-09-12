@@ -1,0 +1,49 @@
+tunnel-group kyndryl-windows type remote-access
+tunnel-group kyndryl-windows general-attributes
+ address-pool Default
+ address-pool Extra
+ default-group-policy kyndryl-windows_Group_Policy
+ username-from-certificate UPN
+tunnel-group kyndryl-windows webvpn-attributes
+ authentication certificate
+ pre-fill-username client hide
+ group-alias kyndryl-windows disable
+ group-url https://kvpn-wdc.remote.kyndryl.net/kyndryl-windows enable
+ group-url https://kvpn-wdc01.remote.kyndryl.net/kyndryl-windows enable
+ group-url https://kvpn-wdc02.remote.kyndryl.net/kyndryl-windows enable
+ group-url https://kvpn-wdc03.remote.kyndryl.net/kyndryl-windows enable
+ group-url https://kvpn-wdc04.remote.kyndryl.net/kyndryl-windows enable
+ group-url https://kvpn.remote.kyndryl.net/kyndryl-windows enable
+
+
+
+
+group-policy kyndryl-windows_Group_Policy internal
+group-policy kyndryl-windows_Group_Policy attributes
+ banner none
+ wins-server none
+ dns-server value 130.103.1.30 130.103.1.31
+ dhcp-network-scope none
+ vpn-simultaneous-logins 10000
+ vpn-idle-timeout 30
+ vpn-session-timeout 1440
+ vpn-tunnel-protocol ssl-client 
+ group-lock value kyndryl-windows
+ pfs disable
+ split-tunnel-policy tunnelspecified
+ split-tunnel-network-list value split_kyndryl
+ default-domain value kyndryl.com
+ split-dns value kyndryl.com ibm.com kyndryluc.com ihost.com kyndryl.net
+ client-bypass-protocol enable
+ address-pools value Default Extra
+ webvpn
+  anyconnect ssl dtls enable
+  anyconnect mtu 1406
+  anyconnect ssl compression none
+  anyconnect dtls compression lzs
+  anyconnect profiles value kyndryl-windows type user
+  anyconnect ssl df-bit-ignore enable
+
+
+
+

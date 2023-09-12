@@ -1,10 +1,44 @@
+
 !
-hostname {{ item.hostname }}
+tunnel-group YKVPN_{{ item.name }} type remote-access
+tunnel-group YKVPN_{{ item.name }} general-attributes
+ address-pool Default
+ address-pool Extra
+ default-group-policy YKVPN_{{ item.name }}_Group_Policy
+ username-from-certificate UPN
+tunnel-group YKVPN_{{ item.name }} webvpn-attributes
+ authentication certificate
+ pre-fill-username client hide
+ group-alias YKVPN_{{ item.name }} disable
+ group-url https://kvpn-wdc.remote.kyndryl.net/YKVPN_{{ item.name }} enable
+ group-url https://kvpn-wdc01.remote.kyndryl.net/YKVPN_{{ item.name }} enable
+ group-url https://kvpn-wdc02.remote.kyndryl.net/YKVPN_{{ item.name }} enable
+ group-url https://kvpn-wdc03.remote.kyndryl.net/YKVPN_{{ item.name }} enable
+ group-url https://kvpn-wdc04.remote.kyndryl.net/YKVPN_{{ item.name }} enable
+ group-url https://kvpn.remote.kyndryl.net/YKVPN_{{ item.name }} enable
 !
-vlan {{ item.vlan1 }}
-!
-vlan {{ item.vlan2 }}
-!
-ip domain-name {{ item.domain }}
-!
-!
+group-policy YKVPN_{{ item.name }}_Group_Policy internal
+group-policy YKVPN_{{ item.name }}_Group_Policy attributes
+ banner none
+ wins-server none
+ dns-server value 130.103.1.30 130.103.1.31
+ dhcp-network-scope none
+ vpn-simultaneous-logins 10000
+ vpn-idle-timeout 30
+ vpn-session-timeout 1440
+ vpn-tunnel-protocol ssl-client 
+ group-lock value YKVPN_{{ item.name }}
+ pfs disable
+ split-tunnel-policy tunnelspecified
+ split-tunnel-network-list value SPLIT_YKVPN_{{ item.name }}
+ default-domain value kyndryl.com
+ split-dns value kyndryl.com ibm.com kyndryluc.com ihost.com kyndryl.net
+ client-bypass-protocol enable
+ address-pools value Default Extra
+ webvpn
+  anyconnect ssl dtls enable
+  anyconnect mtu 1406
+  anyconnect ssl compression none
+  anyconnect dtls compression lzs
+  anyconnect profiles value YKVPN_{{ item.name }} type user
+  anyconnect ssl df-bit-ignore enable

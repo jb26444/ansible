@@ -1,10 +1,10 @@
 ---
 vpn:
-  - {hostname: switch1, vlan1: 1, vlan2: 10, domain: cisco.com}
+  - {name: COMP1, vlan1: 1, vlan2: 10, domain: cisco.com}
 
-  - {hostname: switch2, vlan1: 2, vlan2: 20, domain: cisco.com}
+  - {name: COMP2, vlan1: 1, vlan2: 10, domain: cisco.com}
 
-  - {hostname: switch3, vlan1: 3, vlan2: 30, domain: cisco.com}
+  - 
   
 
  

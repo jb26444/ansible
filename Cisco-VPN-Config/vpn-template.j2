@@ -42,3 +42,6 @@ group-policy YKVPN_{{ item.name }}_Group_Policy attributes
   anyconnect dtls compression lzs
   anyconnect profiles value YKVPN_{{ item.name }} type user
   anyconnect ssl df-bit-ignore enable
+
+
+  acess-list SPLIT_YKVPN_{{ item.name}} standard permit {{ item.splitaddress }} {{item.splitmask}}

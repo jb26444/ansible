@@ -9,11 +9,7 @@ tunnel-group kyndryl-windows webvpn-attributes
  pre-fill-username client hide
  group-alias kyndryl-windows disable
  group-url https://kvpn-wdc.remote.kyndryl.net/kyndryl-windows enable
- group-url https://kvpn-wdc01.remote.kyndryl.net/kyndryl-windows enable
- group-url https://kvpn-wdc02.remote.kyndryl.net/kyndryl-windows enable
- group-url https://kvpn-wdc03.remote.kyndryl.net/kyndryl-windows enable
- group-url https://kvpn-wdc04.remote.kyndryl.net/kyndryl-windows enable
- group-url https://kvpn.remote.kyndryl.net/kyndryl-windows enable
+
 
 
 
@@ -45,5 +41,5 @@ group-policy kyndryl-windows_Group_Policy attributes
   anyconnect ssl df-bit-ignore enable
 
 
-
+access-list {{}}
 

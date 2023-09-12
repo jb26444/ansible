@@ -7,5 +7,5 @@
   tasks:
 
   - name: Config from template
-    template: src=vpn-template.j2 dest=./{{ item.hostname }}.txt
+    template: src=vpn-template.j2 dest=./{{ item.name }}.txt
     with_items: "{{vpn}}"

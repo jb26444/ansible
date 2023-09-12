@@ -1,8 +1,8 @@
 ---
 vpn:
-  - {name: COMP1, vlan1: 1, vlan2: 10, domain: cisco.com}
+  - {name: COMP1, vlan1splitaddress: 192.168.10.0, splitmask: 255.255.255.0}
 
-  - {name: COMP2, vlan1: 1, vlan2: 10, domain: cisco.com}
+  - {name: COMP1, vlan1splitaddress: 192.168.20.0, splitmask: 255.255.255.0}
 
   - 
   

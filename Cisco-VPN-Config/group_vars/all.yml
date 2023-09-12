@@ -1,5 +1,5 @@
 ---
-vpn-profiles:
+vpn:
   - {hostname: switch1, vlan1: 1, vlan2: 10, domain: cisco.com}
 
   - {hostname: switch2, vlan1: 2, vlan2: 20, domain: cisco.com}

@@ -1,18 +1,18 @@
 
 !
-tunnel-group KVPN_MAPLE type remote-access
-tunnel-group KVPN_MAPLE general-attributes
+tunnel-group KVPN_GBTTS type remote-access
+tunnel-group KVPN_GBTTS general-attributes
  address-pool Default
  address-pool Extra
- default-group-policy KVPN_MAPLE_Group_Policy
-tunnel-group KVPN_MAPLE webvpn-attributes
+ default-group-policy KVPN_GBTTS_Group_Policy
+tunnel-group KVPN_GBTTS webvpn-attributes
  authentication saml
- group-alias KVPN_MAPLE enable
- group-url https://kvpn-{{ item.vpnserver }}.remote.kyndryl.net/KVPN_MAPLE enable
+ group-alias GBTTS enable
+ group-url https://kvpn-{{ item.vpnserver }}.remote.kyndryl.net/GBTTS enable
  saml identity-provider http://www.okta.com/{{ item.saml}}
 !
-group-policy KVPN_MAPLE_Group_Policy internal
-group-policy KVPN_MAPLE_Group_Policy attributes
+group-policy KVPN_GBTTS_Group_Policy internal
+group-policy KVPN_GBTTS_Group_Policy attributes
  banner none
  wins-server none
  dns-server value 130.103.1.30 130.103.1.31
@@ -21,10 +21,10 @@ group-policy KVPN_MAPLE_Group_Policy attributes
  vpn-idle-timeout 30
  vpn-session-timeout 1440
  vpn-tunnel-protocol ssl-client 
- group-lock value KVPN_MAPLE
+ group-lock value KVPN_GBTTS
  pfs disable
  split-tunnel-policy tunnelspecified
- split-tunnel-network-list value SPLIT_KVPN_MAPLE
+ split-tunnel-network-list value SPLIT_KVPN_GBTTS
  default-domain value kyndryl.com
  split-dns value kyndryl.com ibm.com kyndryluc.com ihost.com kyndryl.net
  client-bypass-protocol enable
@@ -34,7 +34,7 @@ group-policy KVPN_MAPLE_Group_Policy attributes
   anyconnect mtu 1406
   anyconnect ssl compression none
   anyconnect dtls compression lzs
-  anyconnect profiles value KVPN_MAPLE type user
+  anyconnect profiles value KVPN_GBTTS type user
   anyconnect ssl df-bit-ignore enable
 
 
@@ -42,7 +42,7 @@ group-policy KVPN_MAPLE_Group_Policy attributes
 
 
 webvpn
-anyconnect profiles KVPN_MAPLE disk0:/KVPN_MAPLE.xml
+anyconnect profiles KVPN_GBTTS disk0:/KVPN_GBTTS.xml
 
 
 webvpn

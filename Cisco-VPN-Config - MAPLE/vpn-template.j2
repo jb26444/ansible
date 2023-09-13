@@ -1,0 +1,55 @@
+
+!
+tunnel-group KVPN_MAPLE type remote-access
+tunnel-group KVPN_MAPLE general-attributes
+ address-pool Default
+ address-pool Extra
+ default-group-policy KVPN_MAPLE_Group_Policy
+tunnel-group KVPN_MAPLE webvpn-attributes
+ authentication saml
+ group-alias KVPN_MAPLE enable
+ group-url https://kvpn-{{ item.vpnserver }}.remote.kyndryl.net/KVPN_MAPLE enable
+ saml identity-provider http://www.okta.com/{{ item.saml}}
+!
+group-policy KVPN_MAPLE_Group_Policy internal
+group-policy KVPN_MAPLE_Group_Policy attributes
+ banner none
+ wins-server none
+ dns-server value 130.103.1.30 130.103.1.31
+ dhcp-network-scope none
+ vpn-simultaneous-logins 10000
+ vpn-idle-timeout 30
+ vpn-session-timeout 1440
+ vpn-tunnel-protocol ssl-client 
+ group-lock value KVPN_MAPLE
+ pfs disable
+ split-tunnel-policy tunnelspecified
+ split-tunnel-network-list value SPLIT_KVPN_MAPLE
+ default-domain value kyndryl.com
+ split-dns value kyndryl.com ibm.com kyndryluc.com ihost.com kyndryl.net
+ client-bypass-protocol enable
+ address-pools value Default Extra
+ webvpn
+  anyconnect ssl dtls enable
+  anyconnect mtu 1406
+  anyconnect ssl compression none
+  anyconnect dtls compression lzs
+  anyconnect profiles value KVPN_MAPLE type user
+  anyconnect ssl df-bit-ignore enable
+
+
+
+
+
+webvpn
+anyconnect profiles KVPN_MAPLE disk0:/KVPN_MAPLE.xml
+
+
+webvpn
+saml idp http://www.okta.com/{{ item.saml }}
+url sign-in https://connect.kyndryl.net/app/kyndrylokta_kpvngsnidal02_1/{{ item.saml }}/sso/saml
+timeout assertion 7200
+trustpoint idp OneID
+trustpoint sp OneIDSAML
+signature
+force re-authentication

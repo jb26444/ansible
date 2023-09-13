@@ -1,18 +1,18 @@
 
 !
-tunnel-group YKVPN_COMP2 type remote-access
-tunnel-group YKVPN_COMP2 general-attributes
+tunnel-group YKVPN_Prudential type remote-access
+tunnel-group YKVPN_Prudential general-attributes
  address-pool Default
  address-pool Extra
- default-group-policy YKVPN_COMP2_Group_Policy
-tunnel-group YKVPN_COMP2 webvpn-attributes
+ default-group-policy YKVPN_Prudential_Group_Policy
+tunnel-group YKVPN_Prudential webvpn-attributes
  authentication saml
- group-alias YKVPN_COMP2 enable
- group-url https://kvpn-in01.remote.kyndryl.net/YKVPN_COMP2 enable
+ group-alias YKVPN_Prudential enable
+ group-url https://kvpn-in01.remote.kyndryl.net/YKVPN_Prudential enable
  saml identity-provider http://www.okta.com/12353649848794
 !
-group-policy YKVPN_COMP2_Group_Policy internal
-group-policy YKVPN_COMP2_Group_Policy attributes
+group-policy YKVPN_Prudential_Group_Policy internal
+group-policy YKVPN_Prudential_Group_Policy attributes
  banner none
  wins-server none
  dns-server value 130.103.1.30 130.103.1.31
@@ -21,10 +21,10 @@ group-policy YKVPN_COMP2_Group_Policy attributes
  vpn-idle-timeout 30
  vpn-session-timeout 1440
  vpn-tunnel-protocol ssl-client 
- group-lock value YKVPN_COMP2
+ group-lock value YKVPN_Prudential
  pfs disable
  split-tunnel-policy tunnelspecified
- split-tunnel-network-list value SPLIT_YKVPN_COMP2
+ split-tunnel-network-list value SPLIT_YKVPN_Prudential
  default-domain value kyndryl.com
  split-dns value kyndryl.com ibm.com kyndryluc.com ihost.com kyndryl.net
  client-bypass-protocol enable
@@ -34,15 +34,15 @@ group-policy YKVPN_COMP2_Group_Policy attributes
   anyconnect mtu 1406
   anyconnect ssl compression none
   anyconnect dtls compression lzs
-  anyconnect profiles value YKVPN_COMP2 type user
+  anyconnect profiles value YKVPN_Prudential type user
   anyconnect ssl df-bit-ignore enable
 
 
-  acess-list SPLIT_YKVPN_COMP2 standard permit 192.168.20.0 255.255.255.0
+  acess-list SPLIT_YKVPN_Prudential standard permit 9.251.102.0 255.255.254.0
 
 
 webvpn
-anyconnect profiles YKVPN_COMP2 disk0:/YKVPN.xml
+anyconnect profiles YKVPN_Prudential disk0:/YKVPN.xml
 
 
 webvpn

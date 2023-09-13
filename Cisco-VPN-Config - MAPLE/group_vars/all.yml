@@ -1,0 +1,9 @@
+---
+vpn:
+  - {fw: fw1, saml: 12353649848794, vpnserver: in01}
+
+  - {fw: fw2, saml: 12353649848794, vpnserver: in02}
+
+
+ 
+

@@ -1,0 +1,51 @@
+!
+access-list GSNI_ACCESS standard permit 109.236.181.0 255.255.255.0
+!
+webvpn
+saml idp http://www.okta.com/exk6z5kf4uFaO3bf6697
+url sign-in https://connect.kyndryl.net/app/kyndrylokta_kpvngsnidal02_1/exk6z5kf4uFaO3bf6697/sso/saml
+base-url https://kvpn-dal02.remote.kyndryl.net
+timeout assertion 7200
+trustpoint idp OneID
+trustpoint sp OneIDSAML
+signature
+force re-authentication
+!
+group-policy GSNI_OneId_SAML_GroupPolicy internal
+group-policy GSNI_OneId_SAML_GroupPolicy attributes
+banner none
+wins-server none
+dns-server value 130.103.1.30 130.103.1.31
+dhcp-network-scope none
+vpn-simultaneous-logins 10000
+vpn-idle-timeout 30
+vpn-session-timeout 1440
+vpn-tunnel-protocol ssl-client
+group-lock value GSNI_OneId_SAML
+split-tunnel-policy tunnelspecified
+split-tunnel-network-list value GSNI_ACCESS
+default-domain value kyndryl.com
+split-dns value kyndryl.com ibm.com kyndryluc.com ihost.com kyndryl.net
+client-bypass-protocol enable
+address-pools value Default Extra
+webvpn
+anyconnect ssl dtls enable
+anyconnect mtu 1406
+anyconnect ssl compression none
+anyconnect dtls compression lzs
+anyconnect profiles value GreenKVPN type user
+anyconnect ssl df-bit-ignore enable
+!
+tunnel-group GSNI_OneId_SAML type remote-access
+tunnel-group GSNI_OneId_SAML general-attributes
+address-pool Default
+address-pool Extra
+default-group-policy GSNI_OneId_SAML_GroupPolicy
+tunnel-group GSNI_OneId_SAML webvpn-attributes
+authentication saml
+group-alias GSNI_OneId enable
+group-url https://kvpn-dal02.remote.kyndryl.net/GSNI_OneId enable
+saml identity-provider http://www.okta.com/exk6z5kf4uFaO3bf6697
+!
+anyconnect profiles GreenKVPN disk0:/greenkvpn.xml
+!

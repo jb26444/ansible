@@ -1,10 +1,26 @@
 ---
 vpn:
-  - {name: COMP1, vlan1splitaddress: 192.168.10.0, splitmask: 255.255.255.0}
+  - {name: Verizon, splitaddress: 9.78.115.32, splitmask: 255.255.255.224, saml: 12353649848794, vpnserver: in01}
 
-  - {name: COMP1, vlan1splitaddress: 192.168.20.0, splitmask: 255.255.255.0}
+  - {name: Alberta_Health, splitaddress: 9.80.105.128, splitmask: 255.255.255.192, saml: 12353649848794, vpnserver: in01}
 
-  - 
+  - {name: Prudential, splitaddress: 9.251.102.0, splitmask: 255.255.254.0, saml: 12353649848794, vpnserver: in01}
+
+  - {name: Standard_Life, splitaddress: 9.251.43.64, splitmask: 255.255.255.192, saml: 12353649848794, vpnserver: in01}
+
+  - {name: NYLAM, splitaddress: 9.203.27.128, splitmask: 255.255.255.128, saml: 12353649848794, vpnserver: in01}
+
+  - {name: Standard_Insurance, splitaddress: 170.227.91.0, splitmask: 255.255.255.128, saml: 12353649848794, vpnserver: in01}
+
+  - {name: ECB, splitaddress: 9.203.26.32, splitmask: 255.255.255.128, saml: 12353649848794, vpnserver: in01}
+
+  - {name: HCSC, splitaddress: 192.168.20.0, splitmask: 255.255.255.224, saml: 12353649848794, vpnserver: in01}
+
+  - {name: COMP2, splitaddress: 192.168.20.0, splitmask: 255.255.255.0, saml: 12353649848794, vpnserver: in01}
+
+  - {name: COMP2, splitaddress: 192.168.20.0, splitmask: 255.255.255.0, saml: 12353649848794, vpnserver: in01}
+
+  - {name: COMP2, splitaddress: 192.168.20.0, splitmask: 255.255.255.0, saml: 12353649848794, vpnserver: in01}
   
 
  

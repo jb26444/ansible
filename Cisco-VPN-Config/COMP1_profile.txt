@@ -1,0 +1,45 @@
+
+!
+tunnel-group YKVPN_COMP1 type remote-access
+tunnel-group YKVPN_COMP1 general-attributes
+ address-pool Default
+ address-pool Extra
+ default-group-policy YKVPN_COMP1_Group_Policy
+tunnel-group YKVPN_COMP1 webvpn-attributes
+ authentication saml
+ group-alias YKVPN_COMP1 enable
+ group-url https://kvpn-in01.remote.kyndryl.net/YKVPN_COMP1 enable
+ saml identity-provider http://www.okta.com/12353649848794
+!
+group-policy YKVPN_COMP1_Group_Policy internal
+group-policy YKVPN_COMP1_Group_Policy attributes
+ banner none
+ wins-server none
+ dns-server value 130.103.1.30 130.103.1.31
+ dhcp-network-scope none
+ vpn-simultaneous-logins 10000
+ vpn-idle-timeout 30
+ vpn-session-timeout 1440
+ vpn-tunnel-protocol ssl-client 
+ group-lock value YKVPN_COMP1
+ pfs disable
+ split-tunnel-policy tunnelspecified
+ split-tunnel-network-list value SPLIT_YKVPN_COMP1
+ default-domain value kyndryl.com
+ split-dns value kyndryl.com ibm.com kyndryluc.com ihost.com kyndryl.net
+ client-bypass-protocol enable
+ address-pools value Default Extra
+ webvpn
+  anyconnect ssl dtls enable
+  anyconnect mtu 1406
+  anyconnect ssl compression none
+  anyconnect dtls compression lzs
+  anyconnect profiles value YKVPN_COMP1 type user
+  anyconnect ssl df-bit-ignore enable
+
+
+  acess-list SPLIT_YKVPN_COMP1 standard permit 192.168.10.0 255.255.255.0
+
+
+webvpn
+anyconnect profiles YKVPN_COMP1 disk0:/YKVPN.xml

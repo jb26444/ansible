@@ -5,17 +5,11 @@ tunnel-group YKVPN_{{ item.name }} general-attributes
  address-pool Default
  address-pool Extra
  default-group-policy YKVPN_{{ item.name }}_Group_Policy
- username-from-certificate UPN
 tunnel-group YKVPN_{{ item.name }} webvpn-attributes
- authentication certificate
- pre-fill-username client hide
- group-alias YKVPN_{{ item.name }} disable
- group-url https://kvpn-wdc.remote.kyndryl.net/YKVPN_{{ item.name }} enable
- group-url https://kvpn-wdc01.remote.kyndryl.net/YKVPN_{{ item.name }} enable
- group-url https://kvpn-wdc02.remote.kyndryl.net/YKVPN_{{ item.name }} enable
- group-url https://kvpn-wdc03.remote.kyndryl.net/YKVPN_{{ item.name }} enable
- group-url https://kvpn-wdc04.remote.kyndryl.net/YKVPN_{{ item.name }} enable
- group-url https://kvpn.remote.kyndryl.net/YKVPN_{{ item.name }} enable
+ authentication saml
+ group-alias YKVPN_{{ item.name }} enable
+ group-url https://kvpn-{{ item.vpnserver }}.remote.kyndryl.net/YKVPN_{{ item.name }} enable
+ saml identity-provider http://www.okta.com/{{ item.saml}}
 !
 group-policy YKVPN_{{ item.name }}_Group_Policy internal
 group-policy YKVPN_{{ item.name }}_Group_Policy attributes
@@ -45,3 +39,17 @@ group-policy YKVPN_{{ item.name }}_Group_Policy attributes
 
 
   acess-list SPLIT_YKVPN_{{ item.name}} standard permit {{ item.splitaddress }} {{item.splitmask}}
+
+
+webvpn
+anyconnect profiles YKVPN_{{ item.name }} disk0:/YKVPN.xml
+
+
+webvpn
+saml idp http://www.okta.com/{{ item.saml }}
+url sign-in https://connect.kyndryl.net/app/kyndrylokta_kpvngsnidal02_1/{{ item.saml }}/sso/saml
+timeout assertion 7200
+trustpoint idp OneID
+trustpoint sp OneIDSAML
+signature
+force re-authentication

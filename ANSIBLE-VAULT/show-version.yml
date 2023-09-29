@@ -1,7 +1,6 @@
 ---
-
 - name: Cisco show version example
-  #vars_files: secret.yml
+  vars_files: secret.yml
   hosts: routers
   gather_facts: false
 
